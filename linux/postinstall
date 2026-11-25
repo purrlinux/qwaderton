@@ -1,0 +1,13 @@
+#!/bin/sh
+
+grep '^INITRD=' /etc/mkinitrd.conf &>/dev/null || _INITRD=/boot/initrd-linux
+
+for i in /lib/modules/*; do
+	[ -L $i ] || continue
+	case $(readlink $i) in
+		linux)
+			depmod ${i##*/}
+			mkinitrd -k ${i##*/} -f $_INITRD
+			break;;
+	esac
+done

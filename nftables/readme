@@ -1,0 +1,27 @@
+usage
+=====
+
+the service loads /etc/nftables.conf at start and flushes the ruleset
+when stopped. it does nothing if the file doesn't exist. minimal
+example that drops incoming traffic except ssh:
+
+  #!/usr/sbin/nft -f
+  flush ruleset
+
+  table inet filter {
+      chain input {
+          type filter hook input priority 0; policy drop;
+          ct state established,related accept
+          iif lo accept
+          tcp dport 22 accept
+          meta l4proto { icmp, ipv6-icmp } accept
+      }
+  }
+
+enable the service:
+
+  ln -s /etc/sv/nftables /var/service
+
+reload rules after editing:
+
+  sv restart nftables

@@ -1,0 +1,17 @@
+usage
+=====
+
+enable the service:
+
+  ln -s /etc/sv/dropbear /var/service
+
+host keys are generated on first connection (-R). the port and extra
+options are set in /etc/dropbear/config:
+
+  DROPBEAR_PORT=22
+  DROPBEAR_EXTRA_ARGS="-w -g"    disable root logins
+  DROPBEAR_EXTRA_ARGS="-s"       disable password logins
+
+restart the service after editing: sv restart dropbear
+
+don't enable it together with openssh's sshd on the same port.

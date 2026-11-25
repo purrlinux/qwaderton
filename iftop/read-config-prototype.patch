@@ -1,0 +1,30 @@
+Give read_config() a real prototype.
+
+cfgfile.h declared read_config() with an empty parameter list, which C23
+reads as "takes no arguments", so the call in iftop.c is no longer valid:
+
+  iftop.c:803:16: warning: passing arguments to 'read_config' without a
+  prototype is deprecated in all versions of C and is not supported in
+  C23 [-Wdeprecated-non-prototype]
+
+Declare it as defined in cfgfile.c, and spell the neighbouring
+config_init() as (void) while here.
+
+--- a/cfgfile.h
++++ b/cfgfile.h
+@@ -13,13 +13,13 @@
+     int value;
+ } config_enumeration_type;
+ 
+-int read_config();
++int read_config(char *file, int whinge_on_error);
+ 
+ char *config_get_string(const char *directive);
+ int config_get_bool(const char *directive);
+ int config_get_int(const char *directive, int *value);
+ int config_get_float(const char *directive, float *value);
+-int config_init();
++int config_init(void);
+ void config_set_string(const char *directive, const char* s);
+ int config_get_enum(const char *directive, config_enumeration_type *enumeration, int *value);
+ 

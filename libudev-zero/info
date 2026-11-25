@@ -1,0 +1,4 @@
+description: Drop-in replacement for libudev
+homepage: https://github.com/illiliti/libudev-zero
+license: ISC
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

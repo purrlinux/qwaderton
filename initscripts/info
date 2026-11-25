@@ -1,0 +1,4 @@
+description: Qwaderton Linux init scripts (runit-based)
+homepage: https://git.qwaderton.org/atarwn/ql.git
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

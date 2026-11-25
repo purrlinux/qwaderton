@@ -1,0 +1,4 @@
+description: GPT and MBR partitioning tools (gdisk, sgdisk, cgdisk, fixparts)
+homepage: https://sourceforge.net/projects/gptfdisk/
+license: GPL-2.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,6 @@
+containerd
+runc
+cgroupfs-mount
+iptables
+bash
+nftables

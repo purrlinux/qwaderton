@@ -1,0 +1,12 @@
+#!/bin/sh
+exec 2>&1
+
+[ -f ./conf ] && . ./conf
+
+exec chpst -u git \
+  git daemon \
+    --base-path=${git_home:-/var/git} \
+    --export-all \
+    --reuseaddr \
+    --informative-errors \
+    --verbose ${git_opts}

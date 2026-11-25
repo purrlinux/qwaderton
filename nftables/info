@@ -1,0 +1,4 @@
+description: Netfilter tables framework (nft replacement for iptables)
+homepage: https://www.netfilter.org/
+license: GPL-2.0-only
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

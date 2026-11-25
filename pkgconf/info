@@ -1,0 +1,4 @@
+description: pkg-config implementation with better dependency handling
+homepage: http://pkgconf.org/
+license: ISC
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,4 @@
+description: Locale data for musl libc
+homepage: https://git.adelielinux.org/adelie/musl-locales
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

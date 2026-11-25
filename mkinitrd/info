@@ -1,0 +1,4 @@
+description: Minimal initramfs builder
+homepage: https://codeberg.org/emmett1/mkinitrd
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

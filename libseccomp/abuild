@@ -1,0 +1,4 @@
+name=libseccomp
+version=2.6.2
+release=1
+source="https://github.com/seccomp/${name}/releases/download/v${version}/${name}-${version}.tar.gz"

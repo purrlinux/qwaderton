@@ -1,0 +1,4 @@
+description: Portable lossless data compression library
+homepage: https://www.oberhumer.com/opensource/lzo/
+license: GPL-2.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

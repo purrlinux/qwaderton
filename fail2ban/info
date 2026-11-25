@@ -1,0 +1,4 @@
+description: Ban IPs that show malicious signs
+homepage: https://www.fail2ban.org/
+license: GPL-2.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

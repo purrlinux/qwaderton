@@ -1,0 +1,4 @@
+description: LibreSSL SSL/TLS and cryptographic library
+homepage: https://www.libressl.org/
+license: ISC
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

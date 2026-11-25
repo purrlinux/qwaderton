@@ -1,0 +1,4 @@
+description: Portable libcurses and deps from NetBSD
+homepage: https://github.com/sabotage-linux/netbsd-curses
+license: BSD-3-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

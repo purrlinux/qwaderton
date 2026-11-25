@@ -1,0 +1,4 @@
+description: Manual page parser and formatter (man, apropos, makewhatis)
+homepage: https://mandoc.bsd.lv/
+license: ISC
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

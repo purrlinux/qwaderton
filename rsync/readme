@@ -1,0 +1,18 @@
+usage
+=====
+
+the rsyncd service needs /etc/rsyncd.conf. example:
+
+  uid = nobody
+  gid = nogroup
+  use chroot = yes
+
+  [pub]
+      path = /srv/rsync
+      read only = yes
+
+enable the service:
+
+  ln -s /etc/sv/rsyncd /var/service
+
+the service is not needed for rsync over ssh.

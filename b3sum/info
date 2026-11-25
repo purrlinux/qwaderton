@@ -1,0 +1,4 @@
+description: BLAKE3 cryptographic hash function utility
+homepage: https://git.sr.ht/~mcf/b3sum
+license: Apache-2.0 OR CC0-1.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

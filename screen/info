@@ -1,0 +1,4 @@
+description: Full-screen window manager (terminal multiplexer)
+homepage: https://www.gnu.org/software/screen/
+license: GPL-3.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

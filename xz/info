@@ -1,0 +1,4 @@
+description: LZMA compression utilities and library
+homepage: https://tukaani.org/xz/
+license: 0BSD
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

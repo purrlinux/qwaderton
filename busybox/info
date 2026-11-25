@@ -1,0 +1,4 @@
+description: Swiss army knife of embedded Linux
+homepage: https://busybox.net/
+license: GPL-2.0-only
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

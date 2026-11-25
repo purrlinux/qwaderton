@@ -1,0 +1,23 @@
+name=runc
+version=1.5.3
+release=1
+source="https://github.com/opencontainers/${name}/archive/v${version}/${name}-v${version}.tar.gz"
+
+build() {
+	export GOPATH="$PWD/go"
+	export BUILDTAGS='seccomp apparmor'
+	export CGO_CPPFLAGS="${CPPFLAGS}"
+	export CGO_CFLAGS="${CFLAGS}"
+	export CGO_CXXFLAGS="${CXXFLAGS}"
+	export CGO_LDFLAGS="${LDFLAGS}"
+	export GOFLAGS="-trimpath -mod=readonly -modcacherw"
+	export RUNC_BUILDTAGS="-libpathrs"
+	make SHELL=/bin/sh runc
+	install -Dm755 runc "$PKG/usr/bin/runc"
+	cd man
+	sed -i 's/bash/sh/' md2man-all.sh
+	sed -i '/^cd/d' md2man-all.sh
+	./md2man-all.sh
+	install -d "$PKG/usr/share/man/man8"
+	install -m644 man8/*.8 "$PKG/usr/share/man/man8"
+}

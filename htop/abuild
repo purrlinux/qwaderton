@@ -1,0 +1,10 @@
+name=htop
+version=3.5.3
+release=1
+source="https://github.com/$name-dev/$name/releases/download/$version/$name-$version.tar.xz
+	fix-curses-widechar.patch"
+export CFLAGS="$CFLAGS $(pkg-config --cflags libnl-tiny)"
+
+prebuild() {
+	autoreconf -fi
+}

@@ -1,0 +1,4 @@
+description: Fast lexical analyzer generator
+homepage: https://github.com/westes/flex
+license: BSD-2-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

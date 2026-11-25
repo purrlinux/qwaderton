@@ -1,0 +1,4 @@
+description: 7-Zip file archiver (POSIX port)
+homepage: https://github.com/p7zip-project/p7zip
+license: LGPL-2.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

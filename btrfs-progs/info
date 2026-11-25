@@ -1,0 +1,4 @@
+description: Btrfs filesystem utilities
+homepage: https://btrfs.readthedocs.io/
+license: GPL-2.0-only
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

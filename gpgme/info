@@ -1,0 +1,4 @@
+description: library designed to make access to GnuPG easier for applications
+homepage: https://www.gnupg.org/software/gpgme/index.html
+license: GPL-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

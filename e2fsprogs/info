@@ -1,0 +1,4 @@
+description: Ext2/3/4 filesystem utilities
+homepage: https://e2fsprogs.sourceforge.net/
+license: GPL-2.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

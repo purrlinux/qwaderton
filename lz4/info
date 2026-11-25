@@ -1,0 +1,4 @@
+description: Extremely fast compression algorithm
+homepage: https://lz4.github.io/lz4/
+license: BSD-2-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

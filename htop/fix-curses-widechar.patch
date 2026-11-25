@@ -1,0 +1,80 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -872,6 +872,31 @@
+    ]
+ )
+ 
++# If wide-char support was detected but cchar_t is not a real struct
++# (e.g., cchar_t is just a typedef for chtype), fall back to non-wide mode.
++if test "$htop_curses_capability" = wide; then
++   AC_MSG_CHECKING([whether cchar_t is a wide-character struct])
++   AC_COMPILE_IFELSE(
++      [AC_LANG_PROGRAM(
++         [[
++         #include "ProvideCurses.h"
++         ]], [[
++         cchar_t wc;
++         /* This fails if cchar_t is just a chtype (scalar, no .chars member) */
++         wc.chars[0] = L'x';
++         (void)wc;
++         ]]
++      )],
++      [AC_MSG_RESULT(yes)],
++      [
++         AC_MSG_RESULT(no)
++         AC_MSG_WARN([curses wide-character support detected but cchar_t is not a struct; falling back to non-wide])
++         htop_curses_capability=nonwide
++         AC_DEFINE([HAVE_LIBNCURSES], [1], [libcurses is present (non-wide fallback)])
++      ]
++   )
++fi
++
+ CFLAGS=$htop_save_CFLAGS
+ 
+ if test "$enable_static" = yes; then
+--- a/ProvideCurses.h
++++ b/ProvideCurses.h
+@@ -28,6 +28,15 @@
+ #include <curses.h>
+ #endif
+ 
++/*
++ * If both HAVE_LIBNCURSES and HAVE_LIBNCURSESW are defined, it means
++ * cchar_t is not a real wide-character struct (just a typedef for chtype).
++ * Fall back to non-wide mode by undefining HAVE_LIBNCURSESW.
++ */
++#if defined(HAVE_LIBNCURSES) && defined(HAVE_LIBNCURSESW)
++#undef HAVE_LIBNCURSESW
++#endif
++
+ #ifdef HAVE_LIBNCURSESW
+ #include <wchar.h>
+ #include <wctype.h>
+--- a/RichString.h
++++ b/RichString.h
+@@ -23,18 +23,18 @@
+       (this).highlightAttr = 0;           \
+    } while(0)
+ 
+-#ifdef HAVE_LIBNCURSESW
+-#define RichString_printVal(this, y, x) mvadd_wchstr(y, x, (this).chptr)
+-#define RichString_printoffnVal(this, y, x, off, n) mvadd_wchnstr(y, x, (this).chptr + (off), n)
+-#define RichString_getCharVal(this, i) ((this).chptr[i].chars[0])
+-#define RichString_setChar(this, at, ch) do { (this)->chptr[(at)] = (CharType) { .chars = { ch, 0 } }; } while (0)
+-#define CharType cchar_t
+-#else
++#if defined(HAVE_LIBNCURSES) || !defined(HAVE_LIBNCURSESW)
+ #define RichString_printVal(this, y, x) mvaddchstr(y, x, (this).chptr)
+ #define RichString_printoffnVal(this, y, x, off, n) mvaddchnstr(y, x, (this).chptr + (off), n)
+ #define RichString_getCharVal(this, i) ((this).chptr[i] & 0xff)
+ #define RichString_setChar(this, at, ch) do { (this)->chptr[(at)] = ch; } while (0)
+ #define CharType chtype
++#else
++#define RichString_printVal(this, y, x) mvadd_wchstr(y, x, (this).chptr)
++#define RichString_printoffnVal(this, y, x, off, n) mvadd_wchnstr(y, x, (this).chptr + (off), n)
++#define RichString_getCharVal(this, i) ((this).chptr[i].chars[0])
++#define RichString_setChar(this, at, ch) do { (this)->chptr[(at)] = (CharType) { .chars = { ch, 0 } }; } while (0)
++#define CharType cchar_t
+ #endif
+ 
+ #define RICHSTRING_MAXLEN 350

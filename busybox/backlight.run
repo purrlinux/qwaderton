@@ -1,0 +1,17 @@
+#!/bin/sh
+exec 2>&1
+
+# restore saved brightness
+for dev in /sys/class/backlight/*; do
+	[ -d "$dev" ] || continue
+	name=${dev##*/}
+	[ -f /var/lib/backlight/$name ] || continue
+	val=$(cat /var/lib/backlight/$name)
+	max=$(cat $dev/max_brightness)
+	# avoid restoring a black screen
+	[ "$val" -gt 0 ] 2>/dev/null || continue
+	[ "$val" -gt "$max" ] && val=$max
+	echo "$val" > $dev/brightness
+done
+
+exec sleep infinity

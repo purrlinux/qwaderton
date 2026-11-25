@@ -1,0 +1,58 @@
+#!/bin/sh
+
+echo "> Shutting down system..."
+
+if [ -x /etc/rc.shutdown.local ]; then
+    echo "> Running local shutdown scripts..."
+    /etc/rc.shutdown.local
+fi
+
+if command -v udevadm >/dev/null 2>&1; then
+    echo "> Stopping udev..."
+    udevadm control --exit
+fi
+
+echo "> Stopping all services..."
+sv force-stop /var/service/* 2>/dev/null
+
+sleep 1
+
+if [ -w /var/lib/random-seed ]; then
+    echo "> Saving random seed..."
+    dd if=/dev/urandom of=/var/lib/random-seed count=1 bs=512 2>/dev/null
+fi
+
+if [ -e /dev/rtc ] || [ -e /dev/rtc0 ]; then
+	echo "> Syncing hardware clock..."
+	hwclock -w -u 2>/dev/null
+fi
+
+echo "> Terminating processes..."
+kill -s TERM -1 2>/dev/null
+sleep 2
+
+kill -s KILL -1 2>/dev/null
+sleep 1
+
+echo "> Disabling swap..."
+swapoff -a 2>/dev/null
+
+echo "> Bringing down network..."
+ip link set lo down 2>/dev/null
+
+for iface in $(ip link show | grep '^[0-9]' | awk -F: '{print $2}' | tr -d ' ' | grep -v '^lo$'); do
+    ip link set "$iface" down 2>/dev/null
+done
+
+echo "> Unmounting filesystems..."
+umount -a -r -t noproc 2>/dev/null
+
+echo "> Remounting root as read-only..."
+mount -o remount,ro / 2>/dev/null
+
+echo "> Syncing filesystems..."
+sync
+
+sleep 1
+
+echo "> Shutdown complete. Bye!"

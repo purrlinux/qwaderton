@@ -1,0 +1,4 @@
+description: High-quality block-sorting file compressor
+homepage: https://www.sourceware.org/bzip2/
+license: BSD-4-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

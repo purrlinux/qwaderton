@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+[ -r /etc/dropbear/config ] && . /etc/dropbear/config
+exec dropbear -RF -p ${DROPBEAR_PORT:-22} ${DROPBEAR_EXTRA_ARGS}

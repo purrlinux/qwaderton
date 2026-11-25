@@ -1,0 +1,4 @@
+description: ELF object file access library and utilities
+homepage: https://sourceware.org/elfutils/
+license: LGPL-3.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,44 @@
+--- a/libcxx/CMakeLists.txt
++++ b/libcxx/CMakeLists.txt
+@@ -470,7 +470,7 @@
+ set(LIBCXX_STATIC_OUTPUT_NAME "c++" CACHE STRING "Output name for the static libc++ runtime library.")
+ 
+ # TODO: Use common runtimes infrastructure for output and install paths
+-if(LLVM_ENABLE_PER_TARGET_RUNTIME_DIR AND NOT APPLE)
++if(LLVM_ENABLE_PER_TARGET_RUNTIME_DIR AND NOT APPLE AND NOT CMAKE_SYSTEM_NAME MATCHES "Linux")
+   set(LIBCXX_TARGET_SUBDIR ${LLVM_DEFAULT_TARGET_TRIPLE})
+   if(LIBCXX_LIBDIR_SUBDIR)
+     string(APPEND LIBCXX_TARGET_SUBDIR /${LIBCXX_LIBDIR_SUBDIR})
+--- a/libcxx/test/benchmarks/CMakeLists.txt
++++ b/libcxx/test/benchmarks/CMakeLists.txt
+@@ -11,7 +11,7 @@
+     -Wl,-rpath,${LIBCXX_LIBRARY_DIR}
+     ${SANITIZER_FLAGS}
+     )
+-if(LLVM_ENABLE_PER_TARGET_RUNTIME_DIR AND NOT APPLE)
++if(LLVM_ENABLE_PER_TARGET_RUNTIME_DIR AND NOT APPLE AND NOT CMAKE_SYSTEM_NAME MATCHES "Linux")
+   list(APPEND BENCHMARK_COMPILE_FLAGS
+     -isystem "${LIBCXX_GENERATED_INCLUDE_TARGET_DIR}")
+ endif()
+--- a/libcxxabi/CMakeLists.txt
++++ b/libcxxabi/CMakeLists.txt
+@@ -207,7 +207,7 @@
+     "Path where built libc++abi runtime libraries should be installed.")
+ 
+ # TODO: Use common runtimes infrastructure for output and install paths
+-if(LLVM_ENABLE_PER_TARGET_RUNTIME_DIR AND NOT APPLE)
++if(LLVM_ENABLE_PER_TARGET_RUNTIME_DIR AND NOT APPLE AND NOT CMAKE_SYSTEM_NAME MATCHES "Linux")
+   set(LIBCXXABI_TARGET_SUBDIR ${LLVM_DEFAULT_TARGET_TRIPLE})
+   if(LIBCXXABI_LIBDIR_SUBDIR)
+     string(APPEND LIBCXXABI_TARGET_SUBDIR /${LIBCXXABI_LIBDIR_SUBDIR})
+--- a/libunwind/CMakeLists.txt
++++ b/libunwind/CMakeLists.txt
+@@ -162,7 +162,7 @@
+ set(LIBUNWIND_STATIC_OUTPUT_NAME "unwind" CACHE STRING "Output name for the static libunwind runtime library.")
+ 
+ # TODO: Use common runtimes infrastructure for output and install paths
+-if(LLVM_ENABLE_PER_TARGET_RUNTIME_DIR AND NOT APPLE)
++if(LLVM_ENABLE_PER_TARGET_RUNTIME_DIR AND NOT APPLE AND NOT CMAKE_SYSTEM_NAME MATCHES "Linux")
+   set(LIBUNWIND_TARGET_SUBDIR ${LLVM_DEFAULT_TARGET_TRIPLE})
+   if(LIBUNWIND_LIBDIR_SUBDIR)
+     string(APPEND LIBUNWIND_TARGET_SUBDIR /${LIBUNWIND_LIBDIR_SUBDIR})

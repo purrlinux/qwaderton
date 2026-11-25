@@ -1,0 +1,4 @@
+description: library to make the tasks of working with X.509 certificates, CMS data and related objects more easy
+homepage: https://www.gnupg.org/software/libksba/index.html
+license: GPL-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

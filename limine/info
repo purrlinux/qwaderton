@@ -1,0 +1,4 @@
+description: Modern, advanced, portable, multiprotocol bootloader
+homepage: https://limine-bootloader.org/
+license: BSD-2-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

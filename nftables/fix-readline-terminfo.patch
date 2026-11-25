@@ -1,0 +1,30 @@
+When readline is built against netbsd-curses instead of ncurses,
+linking against -lreadline alone fails with undefined references
+to terminal-related symbols: tputs, tgoto, tgetent, tgetflag,
+tgetnum, tgetstr, PC, BC, UP.
+
+These symbols live in libterminfo and libcurses, which ncurses
+bundles together but netbsd-curses splits into separate libraries.
+
+Add -lcurses -lterminfo alongside -lreadline so the configure
+check and the final link both succeed.
+--- a/configure
++++ b/configure
+@@ -15024,7 +15024,7 @@
+   printf %s "(cached) " >&6
+ else case e in #(
+   e) ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lreadline  $LIBS"
++LIBS="-lreadline -lcurses -lterminfo $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+
+@@ -15064,7 +15064,7 @@
+ then :
+   printf "%s\n" "#define HAVE_LIBREADLINE 1" >>confdefs.h
+
+-  LIBS="-lreadline $LIBS"
++  LIBS="-lreadline -lcurses -lterminfo $LIBS"
+
+ else case e in #(
+   e) as_fn_error $? "No suitable version of libreadline found" "$LINENO" 5 ;;

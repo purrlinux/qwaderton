@@ -1,0 +1,4 @@
+description: GNU line editing library
+homepage: https://tiswww.case.edu/php/chet/readline/rltop.html
+license: GPL-3.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

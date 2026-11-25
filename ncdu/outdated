@@ -1,0 +1,3 @@
+newver() {
+	curl -sf https://dev.yorhel.nl/ncdu | grep -o 'ncdu-1\.[0-9.]*[0-9]\.tar' | sed 's/ncdu-//;s/\.tar//' | sort -V | tail -n1
+}

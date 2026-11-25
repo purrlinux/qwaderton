@@ -1,0 +1,4 @@
+name=libgcrypt
+version=1.12.4
+release=1
+source="https://www.gnupg.org/ftp/gcrypt/${name}/${name}-${version}.tar.bz2"

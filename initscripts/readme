@@ -1,0 +1,22 @@
+usage
+=====
+
+boot is handled by /etc/rc.boot and shutdown by /etc/rc.shutdown, both
+run by busybox init via /etc/inittab. runit (runsvdir /var/service)
+starts services after boot.
+
+local customization (these files are kept across upgrades, don't edit
+rc.boot/rc.shutdown directly):
+
+  /etc/rc.boot.local       commands run at the end of boot
+  /etc/rc.shutdown.local   commands run at shutdown
+  /etc/rc.modules          kernel modules to load at boot, one per line
+  /etc/sysctl.conf         applied with 'sysctl -p' at boot if present
+
+kernel command line options:
+
+  fastboot     skip filesystem check
+  forcefsck    force filesystem check
+
+if /var/service/mdevd exists, rc.boot leaves device setup to mdevd
+instead of busybox mdev.

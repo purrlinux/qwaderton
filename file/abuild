@@ -1,0 +1,5 @@
+name=file
+version=5.48
+release=2
+source="https://astron.com/pub/$name/$name-$version.tar.gz"
+build_opt="--disable-libseccomp"

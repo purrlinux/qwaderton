@@ -1,0 +1,4 @@
+description: exFAT filesystem userspace utilities
+homepage: https://github.com/exfatprogs/exfatprogs
+license: GPL-2.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

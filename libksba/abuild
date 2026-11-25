@@ -1,0 +1,4 @@
+name=libksba
+version=1.9.1
+release=1
+source="https://www.gnupg.org/ftp/gcrypt/${name}/${name}-${version}.tar.bz2"

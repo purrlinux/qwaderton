@@ -1,0 +1,4 @@
+description: Common CA certificates (Mozilla trust store)
+homepage: https://curl.se/docs/caextract.html
+license: MPL-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,9 @@
+drwxr-xr-x 0/0    etc/
+-rw-r--r-- 0/0    etc/inittab.new
+-rwxr-xr-x 0/0    etc/rc.boot.local.new
+-rwxr-xr-x 0/0    etc/rc.boot.new
+-rwxr-xr-x 0/0    etc/rc.modules.new
+-rwxr-xr-x 0/0    etc/rc.shutdown.local.new
+-rwxr-xr-x 0/0    etc/rc.shutdown.new
+drwxr-xr-x 0/0    var/
+drwxr-xr-x 0/0    var/service/

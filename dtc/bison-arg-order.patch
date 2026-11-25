@@ -1,0 +1,12 @@
+--- a/meson.build
++++ b/meson.build
+@@ -74,7 +74,8 @@ if get_option('tools') and not wheel_only
+   pgen = generator(
+     bison,
+     output: ['@BASENAME@.tab.c', '@BASENAME@.tab.h'],
+-    arguments: ['@INPUT@', '--defines=@OUTPUT1@', '--output=@OUTPUT0@'],
++    # Input file must be last for Berkeley yacc compatibility
++    arguments: ['--defines=@OUTPUT1@', '--output=@OUTPUT0@', '@INPUT@'],
+   )
+
+   if cc.check_header('fnmatch.h')

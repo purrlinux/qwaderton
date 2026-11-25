@@ -1,0 +1,4 @@
+description: Fast real-time compression algorithm
+homepage: https://facebook.github.io/zstd/
+license: BSD-3-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

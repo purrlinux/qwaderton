@@ -1,0 +1,4 @@
+description: Minimalistic Netlink communication library
+homepage: https://www.netfilter.org/projects/libmnl/
+license: LGPL-2.1-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

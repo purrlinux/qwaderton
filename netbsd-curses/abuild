@@ -1,0 +1,9 @@
+name=netbsd-curses
+version=0.3.2
+release=1
+source="http://ftp.barfooze.de/pub/sabotage/tarballs/${name}-${version}.tar.xz"
+
+postbuild() {
+	rm $PKG/usr/bin/clear
+	rm $PKG/usr/bin/reset
+}

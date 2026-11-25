@@ -1,0 +1,5 @@
+NAME="Qwaderton Linux"
+PRETTY_NAME="Qwaderton Linux"
+VERSION="One"
+ID="ql"
+ID_LIKE="alice"

@@ -1,0 +1,15 @@
+usage
+=====
+
+the 'git' service runs git-daemon as the 'git' user. the user and
+/var/git are created on install. enable the service:
+
+  ln -s /etc/sv/git /var/service
+
+every repository under /var/git is exported (git://host/<repo>). the
+base path and extra options can be changed in /etc/sv/git/conf:
+
+  git_home=/srv/git
+  git_opts="--port=9418"
+
+repositories must be readable by the 'git' user.

@@ -1,0 +1,23 @@
+#!/bin/sh
+exec 2>&1
+
+[ -f ./conf ] && . ./conf
+
+# bring interface up
+ip link set "${IFACE:-wlan0}" up
+
+# flush old IPs
+ip addr flush dev "${IFACE:-wlan0}"
+
+# assign static IP
+ip addr add "${IP:-192.168.1.22}/${NETMASK:-24}" dev "${IFACE:-wlan0}"
+
+# set default route
+ip route add default via "${GATEWAY:-192.168.1.1}"
+
+# configure DNS
+echo "nameserver ${GATEWAY:-192.168.1.1}" > /etc/resolv.conf
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+
+# block forever so runit keeps it "up"
+exec sleep infinity

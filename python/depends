@@ -1,0 +1,5 @@
+expat
+libffi
+netbsd-curses
+sqlite
+readline

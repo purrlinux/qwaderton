@@ -1,0 +1,161 @@
+name=busybox
+version=1.38.0
+release=4
+source="https://${name}.net/downloads/${name}-${version}.tar.bz2
+	0001-awk-fix-handling-of-literal-backslashes-in-replaceme.patch
+	0016-ping-make-ping-work-without-root-privileges.patch
+	0006-modinfo-add-k-option-for-kernel-version.patch
+	0031-syslogd-fix-wrong-OPT_locallog-flag-detection.patch
+	kernel-6.8-tca.patch
+	fsck-resolve-uuid.patch
+	adduser-no-setgid.patch
+	print-unicode.patch
+	modprobe-kernel-version.patch
+	busybox-suidwrapper.c
+	mdev.conf
+	udhcpc.conf
+	net-static.conf
+	acpid.run
+	crond.run
+	ntpd.run
+	syslogd.run
+	udhcpc.run
+	klogd.run
+	inetd.run
+	httpd.run
+	mdev.run
+	net-static.run
+	tty1.run
+	tty2.run
+	tty3.run
+	tty4.run
+	tty5.run
+	ttyS0.run
+	backlight.run
+	backlight.finish
+	pause.c
+	pause.1
+	default.script"
+sv="acpid.run
+    crond.run
+    ntpd.run
+    syslogd.run
+    klogd.run
+    inetd.run
+    httpd.run
+    mdev.run
+    tty1.run
+    tty2.run
+    tty3.run
+    tty4.run
+    tty5.run
+    ttyS0.run
+    net-static.run
+    net-static.conf
+    udhcpc.run
+    udhcpc.conf
+    backlight.run
+    backlight.finish"
+    
+_disable() {
+	while [ "$1" ]; do
+		sed "s/^CONFIG_${1}=y/# CONFIG_${1} is not set/" -i .config
+		shift
+	done
+}
+
+_enable() {
+	while [ "$1" ]; do
+		sed "s/^# CONFIG_${1}.*/CONFIG_${1}=y/" -i .config
+		shift
+	done
+}
+
+_set() {
+	sed "s|^CONFIG_${1}=.*|CONFIG_${1}=${2}|" -i .config
+}
+
+build() {
+	make defconfig
+
+	#_disable XZCAT XZ UNXZ UNLZMA LZCAT LZMA             # provided by xz
+	_disable STRINGS                                     # provided by llvm
+	#_disable CLEAR RESET                                 # provided by ncurses
+	#_disable PATCH                                       # provided by patch (GNU patch works better)
+	#_disable BZCAT BUNZIP2 BZIP2                         # provided by bzip2
+	#_disable CHATTR LSATTR MKE2FS FINDFS MKFS_EXT2 BLKID # provided by e2fsprogs
+	#_disable MKDOSFS MKFS_VFAT                           # provided by dosfstools
+	
+	_disable FSCK_MINIX MKFS_MINIX DPKG DPKG_DEB MAN  #
+	_disable MODPROBE_SMALL HUSH SHELL_HUSH RPM2CPIO  # JUNKS
+	_disable RX CHAT LINUXRC RPM RUN_PARTS            #
+	
+	_enable STATIC                                          # enable static build
+	_enable FEATURE_MODUTILS_ALIAS FEATURE_MODUTILS_SYMBOLS # enable some kmod features
+	_enable NETCAT                                          # enable netcat
+	_enable FEATURE_MODPROBE_BLACKLIST                      # honor 'blacklist' in modprobe.d
+	_enable FEATURE_LSMOD_PRETTY_2_6_OUTPUT                 # readable lsmod output
+	_enable FEATURE_GPT_LABEL                               # fdisk can read GPT disks
+	_enable FEATURE_MOUNT_HELPERS                           # mount runs /sbin/mount.<type> helpers
+	_enable FEATURE_PATH_TRAVERSAL_PROTECTION               # cpio/ar refuse ../ paths
+	_enable RFKILL                                          # toggle wifi/bluetooth radios
+	_enable UNICODE_WIDE_WCHARS UNICODE_COMBINING_WCHARS    # print CJK, emoji, accents
+	_set LAST_SUPPORTED_WCHAR 0                             #
+	_set FEATURE_DEFAULT_PASSWD_ALGO '"sha512"'             # des truncates at 8 chars, musl crypt lacks yescrypt
+	
+	# install nologin to /sbin
+	sed 's/BB_DIR_USR_SBIN/BB_DIR_SBIN/' -i util-linux/nologin.c
+	
+	# install diff to /bin
+	sed 's/BB_DIR_USR_BIN/BB_DIR_BIN/' -i editors/diff.c
+	
+	make
+	make CONFIG_PREFIX=$PKG install
+	mkdir -p $PKG/usr/share/busybox
+	cat .config > $PKG/usr/share/busybox/config
+
+	${CC:-cc} -o $PKG/bin/busybox-suidwrapper $SRC/busybox-suidwrapper.c
+	chmod u+s $PKG/bin/busybox-suidwrapper
+
+	for i in $($PKG/bin/busybox-suidwrapper -l); do
+		[ -e /bin/$i ] && ln -svf busybox-suidwrapper $PKG/bin/$i
+		[ -e /usr/bin/$i ] && ln -svf ../../bin/busybox-suidwrapper $PKG/usr/bin/$i
+	done
+
+	# mdev	
+	mkdir -p $PKG/etc
+	install -m644 $SRC/mdev.conf $PKG/etc/mdev.conf
+
+	# udhcpc script
+	mkdir -p $PKG/usr/share/udhcpc
+	install -m755 $SRC/default.script $PKG/usr/share/udhcpc/default.script
+	
+	# crond
+	mkdir -p $PKG/var/spool/cron/crontabs
+
+	${CC:-gcc} ${CFLAGS} $SRC/pause.c -o $PKG/usr/bin/pause
+	install -d $PKG/usr/share/man/man1
+	install -m644 $SRC/pause.1 $PKG/usr/share/man/man1/pause.1
+
+	cd $PKG
+	rm \
+	bin/chattr \
+	bin/lsattr \
+	sbin/blkid \
+	sbin/findfs \
+	sbin/mkdosfs \
+	sbin/mke2fs \
+	sbin/mkfs.ext2 \
+	sbin/mkfs.vfat \
+	usr/bin/uuidgen \
+	usr/bin/bunzip2 \
+	usr/bin/bzcat \
+	usr/bin/bzip2 \
+	usr/bin/lzcat \
+	usr/bin/lzma \
+	usr/bin/patch \
+	usr/bin/unlzma \
+	usr/bin/unxz \
+	usr/bin/xz \
+	usr/bin/xzcat
+}

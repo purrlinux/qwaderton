@@ -1,0 +1,4 @@
+description: NCurses Disk Usage analyzer
+homepage: https://dev.yorhel.nl/ncdu
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

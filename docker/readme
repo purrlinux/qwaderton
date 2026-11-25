@@ -1,0 +1,16 @@
+usage
+=====
+
+enable the docker daemon:
+
+  ln -s /etc/sv/dockerd /var/service
+
+the service loads the 'loop' module, mounts cgroups and starts dockerd
+with '-G docker'. add your user to the 'docker' group to use docker
+without root (log in again afterwards):
+
+  addgroup <user> docker
+
+dockerd options can be changed in /etc/sv/dockerd/conf:
+
+  OPTS="-p /var/run/docker.pid -G docker"

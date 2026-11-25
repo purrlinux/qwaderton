@@ -1,0 +1,10 @@
+name=iptables
+version=1.8.13
+release=1
+source="https://www.netfilter.org/projects/${name}/files/${name}-${version}.tar.xz
+	use-sh-iptables-apply.patch"
+build_opt="--disable-nftables"
+
+prebuild() {
+	autoreconf -fi
+}

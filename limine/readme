@@ -1,0 +1,28 @@
+usage
+=====
+
+BIOS:
+
+  cp /usr/share/limine/limine-bios.sys /boot/
+  limine bios-install /dev/sdX
+
+UEFI (EFI system partition mounted on /boot):
+
+  mkdir -p /boot/EFI/BOOT
+  cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/
+
+create /boot/limine.conf:
+
+  timeout: 5
+
+  /Alice Linux
+      protocol: linux
+      kernel_path: boot():/vmlinuz-linux
+      module_path: boot():/initrd-linux
+      cmdline: root=/dev/sda2 rw loglevel=3 quiet
+
+on upgrade, the postinstall script automatically updates installed limine
+EFI binaries (on /boot or /efi) and limine-bios.sys, and reruns
+`limine bios-install` on MBR disks. GPT disks need bios-install rerun manually.
+
+see also: https://alicelinux.org/docs/bootloader.html

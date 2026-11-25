@@ -1,0 +1,4 @@
+name=libmnl
+version=1.0.5
+release=1
+source="https://www.netfilter.org/projects/${name}/files/${name}-${version}.tar.bz2"

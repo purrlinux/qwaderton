@@ -1,0 +1,4 @@
+description: common dependency all GnuPG components
+homepage: https://www.gnupg.org/software/libgpg-error/index.html
+license: GPL-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

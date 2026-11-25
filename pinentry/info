@@ -1,0 +1,4 @@
+description: Small collection of dialog programs to read in a secure manner
+homepage: https://www.gnupg.org/related_software/pinentry/index.html
+license: GPL-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

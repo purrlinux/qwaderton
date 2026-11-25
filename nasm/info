@@ -1,0 +1,4 @@
+description: Netwide Assembler (x86 assembler)
+homepage: https://www.nasm.us/
+license: BSD-2-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,4 @@
+description: Linux kernel packet filtering tools (iptables/ip6tables)
+homepage: https://www.netfilter.org/
+license: GPL-2.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

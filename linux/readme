@@ -1,0 +1,15 @@
+usage
+=====
+
+the kernel is installed as /boot/vmlinuz-linux. an initramfs is
+generated at /boot/initrd-linux by mkinitrd on install and upgrade.
+point your bootloader at both files.
+
+to adjust the config before building, run menuconfig during the build:
+
+  MENUCONFIG=1 apkg -f -u linux
+
+firmware is not included, install linux-firmware if your hardware
+needs it.
+
+if ccache is installed, it is used automatically to speed up rebuilds.

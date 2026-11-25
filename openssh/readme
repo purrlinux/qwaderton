@@ -1,0 +1,14 @@
+usage
+=====
+
+enable the sshd service:
+
+  ln -s /etc/sv/sshd /var/service
+
+host keys are generated on first start. configure the server in
+/etc/sshd_config. extra command line options can be set in
+/etc/sv/sshd/conf:
+
+  OPTS="-p 2222"
+
+don't enable it together with dropbear on the same port.

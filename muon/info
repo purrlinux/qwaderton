@@ -1,0 +1,4 @@
+description: C99 implementation of the meson build system
+homepage: https://muon.build
+license: GPL-3.0-only
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,4 @@
+description: WireGuard userspace tools
+homepage: https://www.wireguard.com/
+license: GPL-2.0-only
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

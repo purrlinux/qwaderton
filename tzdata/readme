@@ -1,0 +1,9 @@
+usage
+=====
+
+set the system timezone by linking the zone file to /etc/localtime:
+
+  ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
+
+e.g. /usr/share/zoneinfo/Asia/Kuala_Lumpur. without /etc/localtime the
+system uses UTC.
