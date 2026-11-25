@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# update installed limine files on install/upgrade, only if limine is
+# actually in use on this system
+#
+
+datadir=/usr/share/limine
+
+# UEFI: replace any EFI executable on the ESP that is a limine binary
+for f in $(find /boot /efi -maxdepth 4 -type f -iname '*.efi' 2>/dev/null | sort -u); do
+	grep -aq 'No volume contained a Limine configuration file' "$f" || continue
+	cmp -s $datadir/BOOTX64.EFI "$f" && continue
+	cp $datadir/BOOTX64.EFI "$f" && echo "limine: updated $f"
+done
+
+# BIOS: replace limine-bios.sys and redeploy stages to the disk holding it
+for f in /boot/limine-bios.sys /boot/limine/limine-bios.sys /limine-bios.sys /limine/limine-bios.sys; do
+	[ -f "$f" ] || continue
+	cmp -s $datadir/limine-bios.sys "$f" && continue
+
+	# find the disk containing this file
+	dev=$(stat -c %d "$f")
+	maj=$(( (dev >> 8) & 0xfff ))
+	min=$(( (dev & 0xff) | ((dev >> 12) & 0xfff00) ))
+	sys=$(readlink -f /sys/dev/block/$maj:$min 2>/dev/null)
+	[ -f "$sys/partition" ] && sys=${sys%/*}
+	disk=/dev/${sys##*/}
+
+	# only touch disks that already have limine stages in the MBR
+	if [ ! -b "$disk" ] || [ "$(dd if=$disk bs=1 skip=3 count=6 2>/dev/null)" != LIMINE ]; then
+		echo "limine: $f found but limine stages not detected on its disk, skipped"
+		continue
+	fi
+
+	cp $datadir/limine-bios.sys "$f" && echo "limine: updated $f"
+
+	if dd if=$disk bs=512 skip=1 count=1 2>/dev/null | grep -aq 'EFI PART'; then
+		echo "limine: $disk is GPT, rerun 'limine bios-install $disk [partition]' manually"
+	else
+		limine bios-install --quiet $disk && echo "limine: bios stages updated on $disk"
+	fi
+done
+
+exit 0

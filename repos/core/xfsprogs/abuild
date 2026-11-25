@@ -1,0 +1,46 @@
+name=xfsprogs
+version=7.3.0
+release=1
+_ulver=2.42
+source="https://www.kernel.org/pub/linux/utils/fs/xfs/$name/$name-$version.tar.xz
+	https://www.kernel.org/pub/linux/utils/util-linux/v$_ulver/util-linux-$_ulver.tar.xz
+	busybox-lsblk.patch"
+
+build() {
+	# xfsprogs needs util-linux libblkid (topology api), system one is from e2fsprogs
+	cd $SRC/util-linux-$_ulver
+	./configure \
+		--prefix=/usr \
+		--disable-all-programs \
+		--enable-libblkid \
+		--disable-shared \
+		--enable-static \
+		--with-pic \
+		--without-udev \
+		--without-systemd \
+		--without-python \
+		--disable-nls
+	make
+	make DESTDIR=$SRC/blkid install
+
+	# CPPFLAGS is ignored by builddefs, pass includes via CFLAGS
+	cd $SRC/$name-$version
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--libdir=/usr/lib \
+		--mandir=/usr/share/man \
+		--enable-lib64=no \
+		--enable-editline=no \
+		--enable-gettext=no \
+		--with-systemd-unit-dir=no \
+		--with-udev-rule-dir=no \
+		--with-crond-dir=no \
+		DEBUG=-DNDEBUG \
+		OPTIMIZER="$CFLAGS" \
+		CFLAGS="$CFLAGS -I$SRC/blkid/usr/include" \
+		LDFLAGS="$LDFLAGS -L$SRC/blkid/usr/lib"
+	make
+	make -j1 DESTDIR=$PKG install install-dev
+}

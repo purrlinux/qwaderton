@@ -1,0 +1,7 @@
+# config file for dropbear service
+
+DROPBEAR_PORT=22
+
+# extra options, e.g. '-w -g' to disable root logins, '-s' to disable
+# password logins. see dropbear(8).
+DROPBEAR_EXTRA_ARGS=""

@@ -1,0 +1,4 @@
+description: Hardware monitoring tools and libraries
+homepage: https://github.com/hramrach/lm-sensors
+license: GPL-2.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,5 @@
+name=dtc
+version=1.8.1
+release=1
+source="https://mirrors.edge.kernel.org/pub/software/utils/${name}/${name}-${version}.tar.xz
+	bison-arg-order.patch"

@@ -1,0 +1,14 @@
+#!/bin/sh
+exec 2>&1
+[ -f ./conf ] && . ./conf
+if [ ! "$IFACE" ]; then
+	for i in /sys/class/net/*; do
+		[ -e $i/phy80211 ] && {
+			IFACE=${i##*/}
+			break
+		}
+	done
+fi
+[ "$IFACE" ] || exit 1
+ip link set $IFACE up
+exec env DNS="$DNS" udhcpc -f -i $IFACE

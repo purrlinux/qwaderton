@@ -1,0 +1,4 @@
+description: System call tracer
+homepage: https://strace.io/
+license: LGPL-2.1-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

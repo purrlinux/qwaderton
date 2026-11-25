@@ -1,0 +1,20 @@
+usage
+=====
+
+there is no systemd journal, so jails must read log files. busybox
+syslogd writes to /var/log/messages:
+
+  ln -s /etc/sv/syslogd /var/service
+
+put local settings in /etc/fail2ban/jail.local, e.g. for sshd:
+
+  [sshd]
+  enabled  = true
+  backend  = auto
+  logpath  = /var/log/messages
+
+then enable the service:
+
+  ln -s /etc/sv/fail2ban /var/service
+
+check status with 'fail2ban-client status'.

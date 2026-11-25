@@ -1,0 +1,5 @@
+name=gpg
+_name=gnupg
+version=2.5.22
+release=1
+source="https://www.${_name}.org/ftp/gcrypt/${_name}/${_name}-${version}.tar.bz2"

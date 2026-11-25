@@ -1,0 +1,4 @@
+description: Command-line JSON processor
+homepage: https://jqlang.github.io/jq/
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

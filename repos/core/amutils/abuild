@@ -1,0 +1,4 @@
+name=amutils
+version=0.1
+release=1
+source="https://git.qwaderton.org/atarwn/${name}.git/snapshot/${name}-${version}.tar.gz"

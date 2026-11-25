@@ -1,0 +1,18 @@
+name=readline
+version=8.3p6
+release=1
+source="https://ftp.gnu.org/gnu/${name}/${name}-${version%p*}.tar.gz
+	$(b=${version%p*}; p=${version#*p}; i=1; while [ $i -le $p ]; do
+		printf "https://ftp.gnu.org/gnu/%s/%s-%s-patches/%s%s-%03d\n" \
+			"$name" "$name" "$b" "$name" "${b/./}" "$i"
+		i=$((i+1))
+	done)"
+
+build() {
+	for p in $SRC/*-0??; do
+		patch -Np0 -i $p
+	done
+	./configure --prefix=/usr --with-curses LIBS="-lcurses -lterminfo"
+	make SHLIB_LIBS="-lcurses -lterminfo"
+	make SHLIB_LIBS="-lcurses -lterminfo" DESTDIR=$PKG install
+}

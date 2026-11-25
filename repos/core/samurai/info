@@ -1,0 +1,4 @@
+description: Ninja-compatible build tool written in C
+homepage: https://github.com/michaelforney/samurai
+license: Apache-2.0 OR MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

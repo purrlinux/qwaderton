@@ -1,0 +1,17 @@
+name=containerd
+version=2.4.2
+release=1
+source="https://github.com/${name}/${name}/archive/v${version}/${name}-v${version}.tar.gz"
+
+build() {
+	export GO111MODULE=auto
+	mkdir -p src/github.com/$name
+	cd src/github.com/$name
+	ln -s $SRC/$name-$version $name
+	cd $name
+	export GOPATH=$SRC
+	# use the long commit hash here
+	make VERSION=v$version REVISION=75cb2b7193e4e490e9fbdc236c0e811ccaba3376
+	install -d -m 0755 $PKG/usr/bin
+	install -m 0755 bin/* $PKG/usr/bin/
+}

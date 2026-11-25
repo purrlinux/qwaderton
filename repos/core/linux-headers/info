@@ -1,0 +1,4 @@
+description: Linux kernel headers for building userspace tools
+homepage: https://www.kernel.org/
+license: GPL-2.0-only
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

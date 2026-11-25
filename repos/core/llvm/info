@@ -1,0 +1,4 @@
+description: LLVM compiler infrastructure (Clang, LLD, compiler-rt, libc++)
+homepage: https://llvm.org/
+license: Apache-2.0 WITH LLVM-exception
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

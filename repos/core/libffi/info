@@ -1,0 +1,4 @@
+description: Foreign Function Interface library
+homepage: https://sourceware.org/libffi/
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

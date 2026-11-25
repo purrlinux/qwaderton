@@ -1,0 +1,15 @@
+usage
+=====
+
+/etc/doas.conf ships with every rule commented out, so doas denies
+everything until configured. to allow members of 'wheel':
+
+  permit persist :wheel
+
+add your user to 'wheel' (log in again afterwards):
+
+  addgroup <user> wheel
+
+keep /etc/doas.conf mode 600. check the config with:
+
+  doas -C /etc/doas.conf

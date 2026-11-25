@@ -1,0 +1,44 @@
+name=btrfs-progs
+version=7.3
+release=1
+_ulver=2.42.4
+case $_ulver in *.*.*) _ulv=${_ulver%.*};; *) _ulv=$_ulver;; esac
+source="https://www.kernel.org/pub/linux/kernel/people/kdave/$name/$name-v$version.tar.xz
+	https://www.kernel.org/pub/linux/utils/util-linux/v$_ulv/util-linux-$_ulver.tar.xz"
+
+build() {
+	# needs util-linux libblkid probe api and libuuid >= 2.31, system ones are from e2fsprogs
+	cd $SRC/util-linux-$_ulver
+	./configure \
+		--prefix=/usr \
+		--disable-all-programs \
+		--enable-libblkid \
+		--enable-libuuid \
+		--disable-shared \
+		--enable-static \
+		--with-pic \
+		--without-udev \
+		--without-systemd \
+		--without-python \
+		--disable-nls
+	make
+	make DESTDIR=$SRC/blkid install
+
+	# BLKID_CFLAGS is unused by the Makefile, pass includes via CFLAGS
+	cd $SRC/$name-v$version
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--libdir=/usr/lib \
+		--mandir=/usr/share/man \
+		--disable-documentation \
+		--disable-python \
+		--disable-backtrace \
+		CFLAGS="$CFLAGS -I$SRC/blkid/usr/include" \
+		BLKID_LIBS="$SRC/blkid/usr/lib/libblkid.a" \
+		UUID_CFLAGS="-I$SRC/blkid/usr/include/uuid" \
+		UUID_LIBS="$SRC/blkid/usr/lib/libuuid.a"
+	make
+	make DESTDIR=$PKG install
+}

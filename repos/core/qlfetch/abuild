@@ -1,0 +1,9 @@
+name=qlfetch
+version=1
+release=1
+source="qlfetch.c"
+
+build() {
+    cc $CFLAGS $LDFLAGS -o $SRC/qlfetch $SRC/qlfetch.c
+    install -Dm 755 $SRC/qlfetch $PKG/usr/bin/qlfetch
+}

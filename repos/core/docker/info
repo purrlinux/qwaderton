@@ -1,0 +1,4 @@
+description: Container platform CLI
+homepage: https://www.docker.com/
+license: Apache-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

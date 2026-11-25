@@ -1,0 +1,13 @@
+name=linux-headers
+version=7.3.4
+release=1
+source="https://cdn.kernel.org/pub/${name%-headers}/kernel/v${version%%.*}.x/${name%-headers}-$version.tar.xz"
+
+build() {
+	make mrproper
+	make headers
+	find usr/include -name '.*' -delete
+	rm usr/include/Makefile
+	mkdir -p $PKG/usr/include
+	cp -rv usr/include/* $PKG/usr/include
+}

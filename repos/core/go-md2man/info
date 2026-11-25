@@ -1,0 +1,4 @@
+description: Convert markdown into man pages
+homepage: https://github.com/cpuguy83/go-md2man
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,4 @@
+description: Packet capture library
+homepage: https://www.tcpdump.org/
+license: BSD-3-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,4 @@
+description: OpenBSD Secure Shell (ssh, scp, sftp, sshd)
+homepage: https://www.openssh.com/
+license: BSD-2-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

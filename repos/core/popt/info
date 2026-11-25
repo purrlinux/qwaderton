@@ -1,0 +1,4 @@
+description: Command line option parsing library
+homepage: https://github.com/rpm-software-management/popt
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

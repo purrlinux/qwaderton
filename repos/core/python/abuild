@@ -1,0 +1,33 @@
+name=python
+version=3.15.2
+release=1
+source="https://www.$name.org/ftp/$name/$version/Python-$version.tar.xz
+	libressl.diff"
+
+build() {
+	# musl workaround
+	export ac_cv_file__dev_ptmx=yes
+	export ac_cv_file__dev_ptc=no
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--libdir=/usr/lib \
+		--infodir=/usr/share/info \
+		--mandir=/usr/share/man \
+		--without-ensurepip \
+		--enable-shared \
+		--with-system-expat \
+		--without-system-libmpdec \
+		--enable-optimizations \
+	LIBS="-lncurses -lterminfo"
+
+	# Fix readline module to link against ncurses (system libreadline lacks NEEDED entry)
+	sed -i 's/MODULE_READLINE_LDFLAGS=-lreadline/MODULE_READLINE_LDFLAGS=-lreadline -Wl,--no-as-needed -lncurses -lterminfo/' Makefile
+
+	make
+	make DESTDIR=$PKG altinstall
+	ln -s python${version%.*} $PKG/usr/bin/python
+	ln -s python${version%.*} $PKG/usr/bin/python3
+}

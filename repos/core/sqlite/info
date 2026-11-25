@@ -1,0 +1,4 @@
+description: Self-contained, serverless, zero-configuration SQL database engine
+homepage: https://www.sqlite.org/
+license: Sqlite
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

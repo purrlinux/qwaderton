@@ -1,0 +1,19 @@
+name=wireguard-tools
+version=1.0.20260223
+release=1
+source="https://git.zx2c4.com/${name}/snapshot/${name}-${version}.tar.xz"
+
+build() {
+	cd src
+	make
+	make install \
+	DESTDIR=$PKG \
+	PREFIX=/usr \
+	RUNSTATEDIR=/run \
+	WITH_WGQUICK=yes \
+	WITH_SYSTEMDUNITS=no \
+	WITH_BASHCOMPLETION=NO
+
+	rm $PKG/usr/bin/wg-quick
+	rm $PKG/usr/share/man/man?/wg-quick.?
+}

@@ -1,0 +1,15 @@
+drwxr-xr-x 0/0    usr/
+drwxr-xr-x 0/0    usr/bin/
+-rwxr-xr-x 0/0    usr/bin/amu
+-rwxr-xr-x 0/0    usr/bin/amu-bin
+-rwxr-xr-x 0/0    usr/bin/amu-resolv
+-rwxr-xr-x 0/0    usr/bin/amu-src
+-rwxr-xr-x 0/0    usr/bin/amu-trigger
+-rwxr-xr-x 0/0    usr/bin/genfstab
+-rwxr-xr-x 0/0    usr/bin/qlchroot
+-rwxr-xr-x 0/0    usr/bin/reposync
+-rwxr-xr-x 0/0    usr/bin/updateconf
+drwxr-xr-x 0/0    usr/lib/
+-rw-r--r-- 0/0    usr/lib/libam.sh
+drwxr-xr-x 0/0    usr/share/
+drwxr-xr-x 0/0    usr/share/man/

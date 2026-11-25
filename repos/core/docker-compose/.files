@@ -1,0 +1,7 @@
+drwxr-xr-x 0/0    usr/
+drwxr-xr-x 0/0    usr/bin/
+-rwxr-xr-x 0/0    usr/bin/docker-compose
+drwxr-xr-x 0/0    usr/lib/
+drwxr-xr-x 0/0    usr/lib/docker/
+drwxr-xr-x 0/0    usr/lib/docker/cli-plugins/
+lrwxrwxrwx 0/0    usr/lib/docker/cli-plugins/docker-compose -> /usr/bin/docker-compose

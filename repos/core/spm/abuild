@@ -1,0 +1,9 @@
+name=spm
+version=1.0.1
+release=2
+source="$name-$version.tar.gz::https://git.qwaderton.org/atarwn/$name.git/snapshot/$name-$version.tar.gz"
+
+build() {
+	make
+	make DESTDIR=$PKG install
+}

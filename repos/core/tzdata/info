@@ -1,0 +1,4 @@
+description: Timezone and daylight-saving time database
+homepage: https://www.iana.org/time-zones
+license: Public-Domain
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,5 @@
+name=gpgme
+version=2.3.1
+release=1
+source="https://www.gnupg.org/ftp/gcrypt/${name}/${name}-${version}.tar.bz2
+posix-io.c.patch"

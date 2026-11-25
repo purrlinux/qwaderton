@@ -1,0 +1,4 @@
+description: Userspace RCU (read-copy-update) library
+homepage: https://liburcu.org/
+license: LGPL-2.1-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,4 @@
+description: library to provide the GNU Pth API and thus a non-preemptive threads implementation
+homepage: https://www.gnupg.org/software/libnpth/index.html
+license: GPL-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

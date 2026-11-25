@@ -1,0 +1,4 @@
+description: Stream-oriented XML parser library
+homepage: https://libexpat.github.io/
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

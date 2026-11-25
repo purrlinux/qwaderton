@@ -1,0 +1,4 @@
+description: Python package build, distribution, and installation toolkit
+homepage: https://setuptools.pypa.io/
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

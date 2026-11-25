@@ -1,0 +1,4 @@
+description: Portable doas (execute commands as another user)
+homepage: https://github.com/Duncaen/OpenDoas
+license: ISC
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

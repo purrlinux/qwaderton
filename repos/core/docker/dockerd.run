@@ -1,0 +1,6 @@
+#!/bin/sh
+exec 2>&1
+[ -r conf ] && . ./conf
+modprobe -q loop || exit 1
+cgroupfs-mount
+exec dockerd ${OPTS:--p /var/run/docker.pid -G docker}

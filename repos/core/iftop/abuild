@@ -1,0 +1,6 @@
+name=iftop
+version=1.0pre4
+release=1
+source="https://pdw.ex-parrot.com/${name}/download/${name}-${version}.tar.gz
+fno-common.patch
+read-config-prototype.patch"

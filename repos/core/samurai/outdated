@@ -1,0 +1,1 @@
+newver() { gittags https://github.com/michaelforney/samurai; }

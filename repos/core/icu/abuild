@@ -1,0 +1,9 @@
+name=icu
+version=79.1
+release=1
+source="https://github.com/unicode-org/icu/releases/download/release-${version}/icu4c-${version}-sources.tgz
+	pc.patch"
+build_dir="icu/source"
+patch_opt="-Np2"
+export CC=${CC:-gcc}
+export CXX=${CXX:-g++}

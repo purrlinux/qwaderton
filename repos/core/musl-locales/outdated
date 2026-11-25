@@ -1,0 +1,1 @@
+newver() { gittags https://git.adelielinux.org/adelie/musl-locales; }

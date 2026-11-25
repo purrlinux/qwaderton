@@ -1,0 +1,43 @@
+usage
+=====
+
+busybox provides the base userland and runit service manager. services
+live in /etc/sv; enable one by linking it into /var/service, disable it
+by removing the link:
+
+  ln -s /etc/sv/<service> /var/service
+  rm /var/service/<service>
+
+available services:
+
+  tty1..tty5    getty on virtual consoles
+  ttyS0         getty on the first serial port
+  mdev          hotplug daemon (instead of the kernel hotplug helper)
+  udhcpc        dhcp client
+  net-static    static ip configuration
+  syslogd       system log, written to /var/log/messages
+  klogd         kernel log to syslog
+  crond         cron daemon (crontabs in /var/spool/cron/crontabs)
+  ntpd          time sync with pool.ntp.org
+  acpid         acpi event daemon
+  backlight     restore/save screen brightness across reboots
+  inetd         internet superserver (needs /etc/inetd.conf)
+  httpd         small web server (serves the service dir by default,
+                add '-h /path/to/www' in /etc/sv/httpd/run)
+
+network services:
+
+  udhcpc picks the first wireless interface unless IFACE is set in
+  /etc/sv/udhcpc/conf. extra DNS servers can be set with DNS="...".
+
+  net-static reads IFACE, IP, NETMASK and GATEWAY from
+  /etc/sv/net-static/conf. it also overwrites /etc/resolv.conf using
+  the gateway and 8.8.8.8 as nameservers.
+
+  use only one of udhcpc, dhcpcd or net-static per interface.
+
+suid commands:
+
+  su, ping, ping6, traceroute, passwd, login, vlock, wall and crontab
+  are routed through the setuid helper /bin/busybox-suidwrapper, so
+  /bin/busybox itself stays non-setuid.

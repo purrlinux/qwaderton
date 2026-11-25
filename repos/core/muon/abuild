@@ -1,0 +1,18 @@
+name=muon
+version=0.7.1
+release=1
+source="https://dl.muon.build/v$version/$name-v$version.tar.gz"
+
+build() {
+	export CC=${CC:-cc}
+	if muon version; then
+		muon setup -Dprefix=/usr -Dtracy=disabled -Dmeson-docs=disabled -Dmeson-tests=disabled build
+		samu -C build
+		muon -C build install -d "$PKG"
+	else
+		./bootstrap.sh build
+		build/muon-bootstrap setup -Dprefix=/usr -Dtracy=disabled -Dmeson-docs=disabled -Dmeson-tests=disabled build
+		build/muon-bootstrap -C build samu
+		build/muon-bootstrap -C build install -d "$PKG"
+	fi
+}

@@ -1,0 +1,4 @@
+description: used for IPC between most newer GnuPG components 
+homepage: https://www.gnupg.org/software/libassuan/index.html
+license: GPL-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

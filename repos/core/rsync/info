@@ -1,0 +1,4 @@
+description: Fast, versatile file synchronization tool
+homepage: https://rsync.samba.org/
+license: GPL-3.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

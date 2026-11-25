@@ -1,0 +1,4 @@
+description: Drop-in zlib replacement with optimizations
+homepage: https://github.com/zlib-ng/zlib-ng
+license: Zlib
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

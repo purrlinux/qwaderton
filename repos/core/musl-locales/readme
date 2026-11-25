@@ -1,0 +1,12 @@
+usage
+=====
+
+musl only finds these locales when MUSL_LOCPATH is set. create
+/etc/profile.d/locale.sh:
+
+  export MUSL_LOCPATH=/usr/share/i18n/locales/musl
+  export LANG=en_US.UTF-8
+
+list available locales with:
+
+  locale -a

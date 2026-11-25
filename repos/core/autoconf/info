@@ -1,0 +1,4 @@
+description: Automatic configure script builder
+homepage: https://www.gnu.org/software/autoconf/
+license: GPL-3.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

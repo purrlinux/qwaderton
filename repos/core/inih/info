@@ -1,0 +1,4 @@
+description: Simple .INI file parser in C
+homepage: https://github.com/benhoyt/inih
+license: BSD-3-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

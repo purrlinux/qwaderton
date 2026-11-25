@@ -1,0 +1,4 @@
+description: Utilities for accessing MS-DOS disks
+homepage: https://www.gnu.org/software/mtools/
+license: GPL-3.0-or-later
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,8 @@
+bzip2
+curl
+expat
+libarchive
+libressl
+pkgconf
+xz
+zlib-ng

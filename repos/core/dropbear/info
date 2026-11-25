@@ -1,0 +1,4 @@
+description: Lightweight SSH server and client
+homepage: https://matt.ucc.asn.au/dropbear/dropbear.html
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

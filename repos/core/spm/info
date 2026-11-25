@@ -1,0 +1,4 @@
+description: Simple Package Manager for Alice Linux
+homepage: https://codeberg.org/emmett1/spm
+license: GPL-3.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

@@ -1,0 +1,4 @@
+description: Management framework for /etc/resolv.conf
+homepage: https://roy.marples.name/projects/openresolv
+license: BSD-2-Clause
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

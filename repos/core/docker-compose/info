@@ -1,0 +1,4 @@
+description: Define and run multi-container Docker applications
+homepage: https://docs.docker.com/compose/
+license: Apache-2.0
+maintainer: Atarwn Gard <atarwn@qwaderton.org>

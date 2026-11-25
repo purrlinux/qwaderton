@@ -1,0 +1,19 @@
+name=libressl
+version=4.4.1
+release=1
+source="https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/${name}-${version}.tar.gz"
+keep_static=1
+
+build() {
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--enable-static \
+		--enable-shared
+	make
+	make DESTDIR=$PKG install
+	make clean
+	make LDFLAGS="-all-static"
+	make DESTDIR=$PKG install
+	rm $PKG/etc/ssl/cert.pem
+}

@@ -1,0 +1,4 @@
+description: Mount cgroupfs at boot
+homepage: https://github.com/tianon/cgroupfs-mount
+license: MIT
+maintainer: Atarwn Gard <atarwn@qwaderton.org>
