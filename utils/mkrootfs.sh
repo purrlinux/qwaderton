@@ -6,12 +6,14 @@ export SPM_ROOT="$(realpath dist/rootfs)"
 
 for package in \
     /var/cache/pkg/amutils#0.1-1.spm \
+    /var/cache/pkg/b3sum#1.3.1-1.spm \
     /var/cache/pkg/baselayout#1-2.spm \
     /var/cache/pkg/busybox#1.38.0-4.spm \
     /var/cache/pkg/bzip2#1.0.8-1.spm \
     /var/cache/pkg/ca-certificates#20261105-1.spm \
     /var/cache/pkg/curl#8.23.0-1.spm \
     /var/cache/pkg/expat#2.11.0-1.spm \
+    /var/cache/pkg/git#2.56.1-1.spm \
     /var/cache/pkg/file#5.48-2.spm \
     /var/cache/pkg/libarchive#3.8.11-1.spm \
     /var/cache/pkg/libressl#4.4.1-1.spm \
