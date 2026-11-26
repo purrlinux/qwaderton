@@ -1,6 +1,6 @@
 name=linux
 version=7.3.6
-release=1
+release=2
 safely_rebuildable=1
 source="https://cdn.kernel.org/pub/$name/kernel/v${version%%.*}.x/$name-$version.tar.xz
 	dotconfig
@@ -30,7 +30,7 @@ rebuild() {
 	kmake INSTALL_MOD_PATH=$PKG INSTALL_MOD_STRIP=1 modules_install
 
 	mkdir -p $PKG/boot
-	cp arch/x86/boot/bzImage $PKG/boot/vmlinuz-linux
+	cp arch/x86/boot/bzImage $PKG/boot/vmlinuz-$version
 
 	touch $PKG/lib/modules/$kernver/current
 	rm -rf $PKG/lib/firmware
@@ -57,7 +57,7 @@ build() {
 	
 	mkdir -p $PKG/boot
 	
-	cp arch/x86/boot/bzImage $PKG/boot/vmlinuz-linux
+	cp arch/x86/boot/bzImage $PKG/boot/vmlinuz-$version
 
 	touch $PKG/lib/modules/$kernver/current
 	
